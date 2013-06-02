@@ -9,6 +9,7 @@ import time
 from pprint import pprint
 import cm15
 
+# Triggered when the CM15 listens and receives raw data
 def dataReceivedHandler(data):
     print("Data received: ")
     pprint(data);
@@ -22,6 +23,6 @@ cm15.open()
 cm15.startListening()
 time.sleep(5)
 
-# Stop listening and close device 
+# Stop listening and close device
 cm15.stopListening()
 cm15.close()
