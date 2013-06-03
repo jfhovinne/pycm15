@@ -12,7 +12,7 @@ import cm15
 # Triggered when the CM15 listens and receives raw data
 def dataReceivedHandler(data):
     print("Data received: ")
-    pprint(data);
+    pprint(data)
 
 # Prepare interface and register event handler
 cm15 = cm15.CM15()
