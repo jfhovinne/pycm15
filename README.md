@@ -1,10 +1,9 @@
 # pycm15 #
 
-A lightweight Python interface to the CM15 X10 controller
+A lightweight Python interface to the CM15 X10 controller (a.k.a. CM15A).
 
-Reads and writes X10 events and commands
-
-Requires PyUSB library (0.x version)
+Reads and writes X10 events and commands.  
+Requires PyUSB library (0.x version).
 
 ## Usage example ##
 
