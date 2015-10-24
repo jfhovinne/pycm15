@@ -62,7 +62,15 @@ Requires PyUSB library (0.x version).
     print("Send B OFF")
     cm15.bulkWrite([0x06, 0xE3])
 
-## udev rule ##
+### Sending X10 commands using cm15send.py ###
+
+    # Usage: python cm15send.py housecode device command
+    # Send B1 ON
+    python cm15send.py B 1 ON
+    # Send B1 OFF
+    python cm15send.py B 1 OFF
+
+### udev rule ###
 
 In order to open the CM15 device without the need for root privileges,
 create the file /etc/udev/rules.d/98-cm15a.rules and add:
