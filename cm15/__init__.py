@@ -8,17 +8,19 @@ Requires PyUSB library (0.x version)
 import sys
 import threading
 import usb
+import time
+from x10 import X10
 
 class CM15():
     def __init__(self):
-      self.VENDOR_ID = 0x0BC7
-      self.PRODUCT_ID = 0x0001
-      self.WRITE_ENDPOINT = 0x02
-      self.READ_ENDPOINT = 0x81
-      self.DATA_SIZE = 8
-      
-      self.device = None
-      self.eventHandlers = {'foundDevice': [], 'dataReceived': [], 'dataWritten': []}
+        self.VENDOR_ID = 0x0BC7
+        self.PRODUCT_ID = 0x0001
+        self.WRITE_ENDPOINT = 0x02
+        self.READ_ENDPOINT = 0x81
+        self.DATA_SIZE = 8
+        
+        self.device = None
+        self.eventHandlers = {'foundDevice': [], 'dataReceived': [], 'dataWritten': []}
 
     def open(self):
         busses = usb.busses()
@@ -64,7 +66,6 @@ class CM15():
                 data = self.deviceHandle.bulkRead(self.READ_ENDPOINT, self.DATA_SIZE, 1000)
                 for eventHandler in self.eventHandlers['dataReceived']:
                     eventHandler(data)
-                    
             except usb.USBError:
                 pass
 
@@ -75,3 +76,16 @@ class CM15():
                 eventHandler(data)
         except usb.USBError:
             pass
+            
+    def sendCommand(self, houseCode, deviceCode, command):
+        addr = X10.encodeAddress(houseCode + deviceCode, True)
+        comm = X10.encodeCommand(houseCode, command)
+        self.bulkWrite([0x04, addr])
+        time.sleep(1)
+        self.bulkWrite([0x06, comm])
+
+    def sendOn(self, houseCode, deviceCode):
+        self.sendCommand(houseCode, deviceCode, 'ON')
+
+    def sendOff(self, houseCode, deviceCode):
+        self.sendCommand(houseCode, deviceCode, 'OFF')
