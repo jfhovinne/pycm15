@@ -101,7 +101,7 @@ Usage: python cm15d.py port
 
 Python Twisted (12.0+) must be installed for this to work of course.
 
-Client: use e.g. Netcat.
+For the client, use e.g. Netcat.
 
 Send B1 ON
 
@@ -114,7 +114,7 @@ One-liner
 
     echo B1 ON | nc -q1 localhost 15915
 
-You can daemonize cm15d with Supervisor (twistd implementation not available yet).
+You can daemonize cm15d with Supervisor (since twistd implementation is not available yet).
 
 First, ensure Supervisor is installed, then create the configuration file for cm15d:
 
