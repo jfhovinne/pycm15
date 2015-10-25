@@ -67,9 +67,11 @@ Requires PyUSB library (0.x version).
 Usage: python cm15send.py housecode device command
 
 Send B1 ON
+
     python cm15send.py B 1 ON
 
 Send B1 OFF
+
     python cm15send.py B 1 OFF
 
 ### udev rule ###
