@@ -64,10 +64,12 @@ Requires PyUSB library (0.x version).
 
 ### Sending X10 commands using cm15send.py ###
 
-    # Usage: python cm15send.py housecode device command
-    # Send B1 ON
+Usage: python cm15send.py housecode device command
+
+Send B1 ON
     python cm15send.py B 1 ON
-    # Send B1 OFF
+
+Send B1 OFF
     python cm15send.py B 1 OFF
 
 ### udev rule ###
