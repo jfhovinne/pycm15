@@ -95,11 +95,15 @@ These events are not handled yet (see cm15DataReceivedHandler).
 The user executing the cm15d process needs to be part of the plugdev group,
 as explained above.
 
+The cm15 module should be available system-wide; copy the cm15 (not cm15d) folder
+to e.g. /usr/local/lib/(python version)/dist-packages
+
+Then, start the server.
+Python Twisted (12.0+) must be installed for this to work of course.
+
 Usage: python cm15d.py port
 
     python cm15d.py 15915
-
-Python Twisted (12.0+) must be installed for this to work of course.
 
 For the client, use e.g. Netcat.
 
