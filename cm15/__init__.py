@@ -10,6 +10,7 @@ import threading
 import usb
 import time
 from x10 import X10
+from pprint import pprint
 
 class CM15():
     def __init__(self):
@@ -76,16 +77,17 @@ class CM15():
                 eventHandler(data)
         except usb.USBError:
             pass
-            
-    def sendCommand(self, houseCode, deviceCode, command):
-        addr = X10.encodeAddress(houseCode + deviceCode, True)
-        comm = X10.encodeCommand(houseCode, command)
-        self.bulkWrite([0x04, addr])
-        time.sleep(1)
-        self.bulkWrite([0x06, comm])
 
-    def sendOn(self, houseCode, deviceCode):
-        self.sendCommand(houseCode, deviceCode, 'ON')
+    def sendCommand(self, code, command):
+        if len(code) == 1:
+            comm = X10.encodeCommand(code, command)
+            self.bulkWrite([0x06, comm])
+        elif len(code) == 2:
+            addr = X10.encodeAddress(code, True)
+            comm = X10.encodeCommand(code[0], command)
+            self.bulkWrite([0x04, addr])
+            time.sleep(1)
+            self.bulkWrite([0x06, comm])
+        else:
+            pass
 
-    def sendOff(self, houseCode, deviceCode):
-        self.sendCommand(houseCode, deviceCode, 'OFF')
