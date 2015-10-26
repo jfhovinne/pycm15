@@ -90,16 +90,20 @@ Then unplug and plug the CM15 again.
 A TCP server based on Python Twisted (12.0+) is available in cm15d/cm15d.py.
 This TCP server listens for incoming X10 commands and sends them to the controller.
 It also listens for X10 events received by the controller (e.g. from RF sensors).
-These events are not handled yet (see cm15DataReceivedHandler).
+These events are dispatched to enabled plugins (see below).
 
 The user executing the cm15d process needs to be part of the plugdev group,
 as explained above.
+
+    adduser --system --no-create-home cm15duser
+    usermod -a -G plugdev cm15duser
 
 The cm15 module should be available system-wide; copy the cm15 (not cm15d) folder
 to e.g. /usr/local/lib/(python version)/dist-packages
 
 Then, start the server.
-Python Twisted (12.0+) must be installed for this to work of course.
+
+Python Twisted (12.0+) and Yapsy (for plugins) must be installed for this to work.
 
 Usage: python cm15d.py port
 
@@ -124,6 +128,13 @@ First, ensure Supervisor is installed, then create the configuration file for cm
 
     [program:cm15d]
     command=/path/to/cm15d.py 15915
-    user=cm15user
+    user=cm15duser
 
-Remember: cm15user needs to be part of the plugdev group.
+Remember: cm15duser needs to be part of the plugdev group.
+
+### CM15d plugins ###
+
+Plugins (based on the Yapsy plugin system) can be loaded by CM15d and subscribe to CM15 events.
+Two example plugins are provided: the first one will simply print the data it receives to stdout,
+while the second one will send the data to an AMQP server, such as RabbitMQ.
+To disable them, rename the abcd.yapsy-plugin files to e.g. abcd.yapsy-plugin.disabled.

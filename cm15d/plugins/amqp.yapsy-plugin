@@ -1,0 +1,9 @@
+[Core]
+Name = AMQP plugin
+Module = amqp
+
+[Documentation]
+Author = Jean-François Hovinne
+Version = 1.0
+Website = https://github.com/jfhovinne/pycm15
+Description = CM15d plugin which sends data it receives to an AMQP server.

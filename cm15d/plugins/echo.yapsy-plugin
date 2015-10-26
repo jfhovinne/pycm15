@@ -1,0 +1,9 @@
+[Core]
+Name = Echo plugin
+Module = echo
+
+[Documentation]
+Author = Jean-François Hovinne
+Version = 1.0
+Website = https://github.com/jfhovinne/pycm15
+Description = Basic CM15d plugin which prints the data it receives.
