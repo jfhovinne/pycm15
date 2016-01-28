@@ -9,7 +9,7 @@ import sys
 import threading
 import usb
 import time
-from x10 import X10
+from .x10 import X10
 from pprint import pprint
 
 class CM15():
