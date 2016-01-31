@@ -4,7 +4,7 @@ A lightweight Python interface to the CM15 X10 controller (a.k.a. CM15A).
 
 Reads and writes X10 events and commands.
 Requires PyUSB library (0.x version).
-Tested on Debian Wheezy.
+Tested on Debian Wheezy and Python 2.7.3 (should work with Python 3+).
 
 ## Usage example ##
 
