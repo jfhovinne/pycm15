@@ -105,7 +105,9 @@ By default, cm15d is started at port 15915, and looks for plugins in the
 cm15d/plugins subfolder, while all plugins are disabled.
 
 These options can be overriden using the following configuration files (if existing):
+
 ./conf/cm15d.conf, /etc/cm15d.conf, /etc/cm15d/cm15d.conf, /etc/cm15d/conf.d/local.conf.
+
 An example configuration file is available in cm15d/conf/cm15d.conf.example
 
 Python Twisted (12.0+) and Yapsy (for plugins) must be installed for this to work.
@@ -142,4 +144,3 @@ Remember: cm15duser needs to be part of the plugdev group.
 Plugins (based on the Yapsy plugin system) can be loaded by CM15d and subscribe to CM15 events.
 Two example plugins are provided: the first one will simply print the data it receives to stdout,
 while the second one will send the data to an AMQP server, such as RabbitMQ.
-To disable them, rename the abcd.yapsy-plugin files to e.g. abcd.yapsy-plugin.disabled.
