@@ -9,7 +9,7 @@ class AMQP(IPlugin):
         self.sendData('CM15DataWritten', data)
 
     def sendData(self, queue, data):
-        out = ' '.join(str(v) for v in data) + '\n'
+        out = ' '.join(str(hex(v)) for v in data) + '\n'
         connection = pika.BlockingConnection()
         channel = connection.channel()
         channel.queue_declare(queue=queue)

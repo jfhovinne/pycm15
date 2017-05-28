@@ -1,5 +1,5 @@
 [Core]
-Name = AMQP plugin
+Name = AMQP
 Module = amqp
 
 [Documentation]

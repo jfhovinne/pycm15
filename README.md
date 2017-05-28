@@ -101,13 +101,18 @@ as explained above.
 The cm15 module should be available system-wide; copy the cm15 (not cm15d) folder
 to e.g. /usr/local/lib/(python version)/dist-packages
 
-Then, start the server.
+By default, cm15d is started at port 15915, and looks for plugins in the
+cm15d/plugins subfolder, while all plugins are disabled.
+
+These options can be overriden using the following configuration files (if existing):
+./conf/cm15d.conf, /etc/cm15d.conf, /etc/cm15d/cm15d.conf, /etc/cm15d/conf.d/local.conf.
+An example configuration file is available in cm15d/conf/cm15d.conf.example
 
 Python Twisted (12.0+) and Yapsy (for plugins) must be installed for this to work.
 
-Usage: python cm15d.py port
+Usage: python cm15d.py
 
-    python cm15d.py 15915
+    python cm15d.py
 
 For the client, use e.g. Netcat.
 
@@ -127,7 +132,7 @@ You can daemonize cm15d with Supervisor (since twistd implementation is not avai
 First, ensure Supervisor is installed, then create the configuration file for cm15d:
 
     [program:cm15d]
-    command=/path/to/cm15d.py 15915
+    command=/path/to/cm15d.py
     user=cm15duser
 
 Remember: cm15duser needs to be part of the plugdev group.

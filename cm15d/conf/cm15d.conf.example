@@ -1,0 +1,4 @@
+[cm15d]
+port = 16916
+plugins_directory = /path/to/my/custom/cm15d/plugins
+plugins_enabled = Echo,AMQP
