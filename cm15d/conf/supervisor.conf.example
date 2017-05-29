@@ -1,0 +1,3 @@
+[program:cm15d]
+command=/usr/local/bin/cm15d.py
+user=cm15d
