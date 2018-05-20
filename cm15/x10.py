@@ -11,11 +11,11 @@ class X10():
                 return(int(X10.codedValues[X10.houseCodes.index(value)], 16))
             else:
                 return(X10.codedValues[X10.houseCodes.index(value)])
-        elif len(value) == 2:
+        elif len(value) < 4:
             if hexadecimal:
-                return(int(X10.codedValues[X10.houseCodes.index(value[0])] + X10.codedValues[X10.devices.index(value[1])], 16))
+                return(int(X10.codedValues[X10.houseCodes.index(value[0])] + X10.codedValues[X10.devices.index(value[1:])], 16))
             else:
-                return(X10.codedValues[X10.houseCodes.index(value[0])] + X10.codedValues[X10.devices.index(value[1])])
+                return(X10.codedValues[X10.houseCodes.index(value[0])] + X10.codedValues[X10.devices.index(value[1:])])
         else:
             raise ValueError('Incorrect X10 address')
     
