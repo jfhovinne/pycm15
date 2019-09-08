@@ -1,12 +1,38 @@
-# pycm15 #
+# pycm15
 
 A lightweight Python interface to the CM15 X10 controller (a.k.a. CM15A).
 
 Reads and writes X10 events and commands.
-Requires PyUSB library (0.x version).
-Tested on Debian Wheezy and Python 2.7.3 (should work with Python 3+).
 
-## Usage example ##
+Requires PyUSB library.
+
+Tested on Debian Wheezy, Ubuntu 18.04 LTS and Python 2.7.x (should work with Python 3+).
+
+## Install
+
+### Install PyUSB
+
+    apt install python-usb
+
+### udev rule
+
+In order to open the CM15 device without the need for root privileges,
+create the file /etc/udev/rules.d/98-cm15a.rules and add:
+
+    # X10 CM15a X10 controller
+    ATTRS{idVendor}=="0bc7", ATTRS{idProduct}=="0001", MODE="664", GROUP="plugdev"
+
+Then unplug and plug the CM15 again.
+
+## Usage
+
+First, clone this repository.
+
+To test if everything is correctly set up, execute:
+
+    python example.py
+
+### Example
 
     import cm15
 
@@ -20,8 +46,8 @@ Tested on Debian Wheezy and Python 2.7.3 (should work with Python 3+).
     cm15.stopListening()
     # Close device
     cm15.close()
-    
-### Event handlers ###
+
+### Event handlers
 
     import time
     from pprint import pprint
@@ -41,13 +67,13 @@ Tested on Debian Wheezy and Python 2.7.3 (should work with Python 3+).
     cm15.startListening()
     time.sleep(5)
 
-    # If the CM15 receives data, it will be printed on the screen 
+    # If the CM15 receives data, it will be printed on the screen
 
     # Stop listening and close device
     cm15.stopListening()
     cm15.close()
 
-### Sending X10 commands ###
+### Sending X10 commands
 
     # Send X10 commands: B1 ON, B1 OFF
     print("Select device B1")
@@ -63,7 +89,7 @@ Tested on Debian Wheezy and Python 2.7.3 (should work with Python 3+).
     print("Send B OFF")
     cm15.bulkWrite([0x06, 0xE3])
 
-## Sending X10 commands using cm15send.py ##
+### Sending X10 commands using cm15send.py
 
 Usage: python cm15send.py code command
 
@@ -74,16 +100,6 @@ Send B ON
 Send B1 OFF
 
     python cm15send.py B1 OFF
-
-## udev rule ##
-
-In order to open the CM15 device without the need for root privileges,
-create the file /etc/udev/rules.d/98-cm15a.rules and add:
-
-    # X10 CM15a X10 controller
-    ATTRS{idVendor}=="0bc7", ATTRS{idProduct}=="0001", MODE="664", GROUP="plugdev"
-    
-Then unplug and plug the CM15 again.
 
 ## CM15d server ##
 
