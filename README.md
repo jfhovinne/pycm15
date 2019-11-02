@@ -1,12 +1,12 @@
 # pycm15
 
-A lightweight Python interface to the CM15 X10 controller (a.k.a. CM15A).
+A lightweight Python interface to the [CM15A X10 controller](http://kbase.x10.com/wiki/CM15A) (a.k.a. CM15).
 
-Reads and writes X10 events and commands.
+Reads and writes [X10](https://en.wikipedia.org/wiki/X10_(industry_standard)) events and commands.
 
 Requires PyUSB library.
 
-Tested on Debian Wheezy, Ubuntu 18.04 LTS and Python 2.7.x (should work with Python 3+).
+Tested on Debian Wheezy to Buster, Ubuntu 18.04 LTS and Python 2.7.x (should work with Python 3+).
 
 ## Install
 
@@ -19,7 +19,7 @@ Tested on Debian Wheezy, Ubuntu 18.04 LTS and Python 2.7.x (should work with Pyt
 In order to open the CM15 device without the need for root privileges,
 create the file /etc/udev/rules.d/98-cm15a.rules and add:
 
-    # X10 CM15a X10 controller
+    # X10 CM15A X10 controller
     ATTRS{idVendor}=="0bc7", ATTRS{idProduct}=="0001", MODE="664", GROUP="plugdev"
 
 Then unplug and plug the CM15 again.
@@ -104,8 +104,11 @@ Send B1 OFF
 ## CM15d server ##
 
 A TCP server based on Python Twisted (12.0+) is available in cm15d/cm15d.py.
+
 This TCP server listens for incoming X10 commands and sends them to the controller.
+
 It also listens for X10 events received by the controller (e.g. from RF sensors).
+
 These events are dispatched to enabled plugins (see below).
 
 The user executing the cm15d process needs to be part of the plugdev group,
@@ -127,6 +130,8 @@ These options can be overriden using the following configuration files (if exist
 An example configuration file is available in cm15d/conf/cm15d.conf.example
 
 Python Twisted (12.0+) and Yapsy (for plugins) must be installed for this to work.
+
+    apt install python-twisted python-yapsy
 
 Usage: python cm15d.py
 
@@ -158,5 +163,6 @@ Remember: cm15duser needs to be part of the plugdev group.
 ### CM15d plugins ###
 
 Plugins (based on the Yapsy plugin system) can be loaded by CM15d and subscribe to CM15 events.
-Two example plugins are provided: the first one will simply print the data it receives to stdout,
-while the second one will send the data to an AMQP server, such as RabbitMQ.
+
+Two example plugins are provided: the first one will simply print the data it receives to stdout, while the second one will send the data to an AMQP server,
+such as RabbitMQ (Python Pika required).
