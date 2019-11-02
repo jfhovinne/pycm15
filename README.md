@@ -6,13 +6,17 @@ Reads and writes [X10](https://en.wikipedia.org/wiki/X10_(industry_standard)) ev
 
 Requires PyUSB library.
 
-Tested on Debian Wheezy to Buster, Ubuntu 18.04 LTS and Python 2.7.x (should work with Python 3+).
+Tested on Debian Wheezy to Buster, Ubuntu 18.04 LTS, Python 2.7.x and Python 3.7.x
 
 ## Install
 
 ### Install PyUSB
 
     apt install python-usb
+
+If using Python 3.x:
+
+    apt install python3-usb
 
 ### udev rule
 
